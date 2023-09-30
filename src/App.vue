@@ -2,8 +2,12 @@
 
 import {addIcons} from 'oh-vue-icons';
 import { MdCloseRound } from "oh-vue-icons/icons";
+import TodoItem from "./components/TodoItem.vue";
+import { useTodoStore } from './store';
 
 addIcons(MdCloseRound)
+
+const todos = useTodoStore();
 </script>
 
 
@@ -11,7 +15,7 @@ addIcons(MdCloseRound)
   <main>
     <div class="h-[35vh] w-full bg-blue-400 pt-[3rem]">
       <section
-        class="mx-auto flex h-max flex-col gap-[2rem] border md:w-[33.75rem]"
+        class="mx-auto flex h-max flex-col gap-[2rem] md:w-[33.75rem]"
       >
         <div class="flex items-center justify-between text-white">
           <h3
@@ -35,23 +39,21 @@ addIcons(MdCloseRound)
           <div
             class="flex flex-col rounded-md bg-white shadow-xl shadow-black/10"
           >
-            <ul
+            <div
               class="flex max-h-[23rem] flex-col overflow-y-auto"
             >
-              <li
-                class="text-primary group flex items-center justify-between border-b border-[#E3E4F1] p-[1rem] text-[1.1rem] hover:cursor-grab"
-              >
-                <div class="flex items-center gap-4">
-                  <button
-                    class="hover:border-primary h-5 w-5 rounded-full border"
-                  ></button>
-                  <p>Complete online JavaScript course</p>
-                </div>
-                <button class="hidden group-hover:block transition-all duration-300 ease-linear">
-                  <v-icon name="md-close-round" scale="1.2" />
-                </button>
-              </li>
-            </ul>
+
+            <TodoItem 
+              v-for="todo in todos.todos"
+              :key="todo.id"
+              :id="todo.id"
+              :title="todo.title"
+              :status="todo.status"
+            />
+
+         
+              <p class="text-center text-[#d1d1d1] text-lg p-4" v-if="!todos.todos.length">No TODOs</p>
+            </div>
             <div class="flex items-center justify-between p-[1rem]">
               <span class="text-[0.875rem] text-[#9495A5]">5 items left</span>
               <div
