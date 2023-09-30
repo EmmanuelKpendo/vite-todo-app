@@ -1,13 +1,14 @@
 <script setup lang="ts">
-
 import {addIcons} from 'oh-vue-icons';
 import { MdCloseRound } from "oh-vue-icons/icons";
 import TodoItem from "./components/TodoItem.vue";
+import FilterButtons from "./components/FilterButtons.vue";
+import TodoForm from "./components/TodoForm.vue";
 import { useTodoStore } from './store';
 
 addIcons(MdCloseRound)
 
-const todos = useTodoStore();
+const store = useTodoStore();
 </script>
 
 
@@ -26,16 +27,7 @@ const todos = useTodoStore();
           <button>🌙</button>
         </div>
         <div class="flex flex-col gap-[1rem]">
-          <form
-            class="flex items-center gap-[1rem] rounded-md bg-white p-[1rem]"
-          >
-            <button class="h-5 w-5 rounded-full border border-black"></button>
-            <input
-              type="text"
-              placeholder="Type your TODO..."
-              class="w-10/12 outline-none placeholder:italic"
-            />
-          </form>
+          <TodoForm />
           <div
             class="flex flex-col rounded-md bg-white shadow-xl shadow-black/10"
           >
@@ -44,7 +36,7 @@ const todos = useTodoStore();
             >
 
             <TodoItem 
-              v-for="todo in todos.todos"
+              v-for="todo in store.viewTodos"
               :key="todo.id"
               :id="todo.id"
               :title="todo.title"
@@ -52,19 +44,13 @@ const todos = useTodoStore();
             />
 
          
-              <p class="text-center text-[#d1d1d1] text-lg p-4" v-if="!todos.todos.length">No TODOs</p>
+              <p class="text-center text-[#d1d1d1] text-lg p-4" v-if="!store.todos.length">No TODOs</p>
             </div>
             <div class="flex items-center justify-between p-[1rem]">
-              <span class="text-[0.875rem] text-[#9495A5]">5 items left</span>
-              <div
-                class="flex items-center gap-2 text-[0.875rem] font-semibold"
-              >
-                <button>All</button>
-                <button>Active</button>
-                <button>Completed</button>
-              </div>
-              <button>Clear Completed</button>
-            </div>
+              <span class="text-[0.875rem] text-[#9495A5]">{{store.activeTodos.length}} items left</span>
+              <FilterButtons />
+              <button v-bind:disabled="Boolean(!store.completedTodos.length)" @click="store.deleteCompletedTodos" class="disabled:cursor-not-allowed disabled:opacity-40">Clear Completed</button>
+</div>
           </div>
         </div>
       </section>
