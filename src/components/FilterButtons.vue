@@ -6,10 +6,11 @@ import { Status } from "../types.d";
 const store = useTodoStore();
 
 onUpdated(() => {
-    if(!store.completedTodos.length) {
-        store.setTodosStatus(Status.All);
-    }
-})
+
+  if (store.completedTodos.length && !store.activeTodos.length) {
+      store.setTodosStatus(Status.Completed);
+  }
+});
 
 const buttonStyles =
   "text-[#9495A5] hover:text-primary transition-all duration-300 ease-linear";
