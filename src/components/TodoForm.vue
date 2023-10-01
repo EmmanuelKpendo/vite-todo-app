@@ -35,7 +35,7 @@ const formData = ref({
         <input
         v-model="formData.title"
         type="text"
-        placeholder="Type your TODO..."
+        placeholder="Type your todo..."
         class="w-10/12 outline-none placeholder:italic"
         />
     </form>

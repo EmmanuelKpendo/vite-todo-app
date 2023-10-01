@@ -4,13 +4,14 @@ import { Status } from "../types.d";
 
 const store = useTodoStore();
 
-
 const buttonStyles =
   "text-[#9495A5] hover:text-primary transition-all duration-300 ease-linear";
 </script>
 
 <template>
-  <div class="hidden md:flex items-center gap-4 sm:gap-2 text-[0.875rem] font-semibold">
+  <div
+    class="mb-4 flex items-center justify-center gap-10 rounded-md bg-white p-[1rem] text-[0.875rem] font-semibold shadow-xl shadow-black/10 sm:gap-2 md:hidden"
+  >
     <button
       :style="store.todosStatus === Status.All ? 'color: #3A7CFD' : ''"
       :class="buttonStyles"
@@ -30,7 +31,7 @@ const buttonStyles =
     <button
       :style="store.todosStatus === Status.Completed ? 'color: #3A7CFD' : ''"
       :class="buttonStyles"
-     :disabled="Boolean(!store.completedTodos.length)"
+      :disabled="Boolean(!store.completedTodos.length)"
       class="disabled:cursor-not-allowed disabled:opacity-40"
       @click="store.setTodosStatus(Status.Completed)"
     >

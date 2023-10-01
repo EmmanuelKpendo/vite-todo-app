@@ -5,6 +5,7 @@ import TodoItem from "./components/TodoItem.vue";
 import FilterButtons from "./components/FilterButtons.vue";
 import TodoForm from "./components/TodoForm.vue";
 import { useTodoStore } from "./store";
+import MobileFilterButtons from "./components/MobileFilterButtons.vue";
 
 addIcons(MdCloseRound);
 
@@ -12,17 +13,14 @@ const store = useTodoStore();
 </script>
 
 <template>
-  <main>
+  <main class="text-sm sm:text-base">
     <div class="h-[35vh] w-full bg-blue-400 pt-[3rem]">
-      <section class="mx-auto flex h-max flex-col gap-[2rem] md:w-[33.75rem]">
-        <div class="flex items-center justify-between text-white">
+      <section class="mx-[7vw] sm:mx-[10vw] md:mx-auto flex h-max flex-col gap-[2rem] md:w-[33.75rem]">
           <h3
-            class="text-[2.5rem] font-semibold uppercase tracking-[0.9375rem]"
+            class="text-[2.5rem] font-semibold uppercase tracking-[0.9375rem] text-white"
           >
             todo
           </h3>
-          <button>🌙</button>
-        </div>
         <div class="flex flex-col gap-[1rem]">
           <TodoForm />
           <div
@@ -59,6 +57,7 @@ const store = useTodoStore();
             </div>
           </div>
         </div>
+        <MobileFilterButtons />
       </section>
     </div>
   </main>
