@@ -10,7 +10,7 @@ const buttonStyles =
 
 <template>
   <div
-    class="mb-4 flex items-center justify-center gap-10 rounded-md bg-white p-[1rem] text-[0.875rem] font-semibold shadow-xl shadow-black/10 sm:gap-2 md:hidden"
+    class="mb-4 flex items-center justify-center gap-10 sm:gap-14 rounded-md bg-white p-[1rem] text-[0.875rem] font-semibold shadow-xl shadow-black/10 md:hidden"
   >
     <button
       :style="store.todosStatus === Status.All ? 'color: #3A7CFD' : ''"

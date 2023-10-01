@@ -26,7 +26,7 @@ const store = useTodoStore();
           <div
             class="flex flex-col rounded-md bg-white shadow-xl shadow-black/10"
           >
-            <div class="flex max-h-[23rem] flex-col overflow-y-auto">
+            <div class="flex max-h-[48vh] flex-col overflow-y-auto">
               <TodoItem
                 v-for="todo in store.viewTodos"
                 :key="todo.id"
