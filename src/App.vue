@@ -15,12 +15,14 @@ const store = useTodoStore();
 <template>
   <main class="text-sm sm:text-base">
     <div class="h-[35vh] w-full bg-blue-400 pt-[3rem]">
-      <section class="mx-[7vw] sm:mx-[10vw] md:mx-auto flex h-max flex-col gap-[2rem] md:w-[33.75rem]">
-          <h3
-            class="text-[2.5rem] font-semibold uppercase tracking-[0.9375rem] text-white"
-          >
-            todo
-          </h3>
+      <section
+        class="mx-[7vw] flex h-max flex-col gap-[2rem] sm:mx-[10vw] md:mx-auto md:w-[33.75rem]"
+      >
+        <h3
+          class="text-[2.5rem] font-semibold uppercase tracking-[0.9375rem] text-white"
+        >
+          todo
+        </h3>
         <div class="flex flex-col gap-[1rem]">
           <TodoForm />
           <div
@@ -42,9 +44,14 @@ const store = useTodoStore();
                 No TODOs
               </p>
             </div>
-            <div v-if="store.todos.length" class="flex items-center justify-between p-[1rem]">
+            <div
+              v-if="store.todos.length"
+              class="flex items-center justify-between p-[1rem]"
+            >
               <span class="text-[0.875rem] text-[#9495A5]"
-                >{{ store.activeTodos.length }} item<span v-if="store.activeTodos.length > 1">s</span> left</span
+                >{{ store.activeTodos.length }} item<span
+                  v-if="store.activeTodos.length > 1">s</span>
+                left</span
               >
               <FilterButtons />
               <button
