@@ -56,9 +56,10 @@ export const useTodoStore = defineStore("todos", {
       this.todos = this.todos.filter((todo) => todo.id !== id);
       localStorage.setItem("todos", JSON.stringify(this.todos));
     },
-
+    
     deleteCompletedTodos() {
       this.todos = this.todos.filter((todo) => todo.status === Status.Active);
+      localStorage.setItem("todos", JSON.stringify(this.todos));
     },
     
     setTodosStatus(status: Status) {

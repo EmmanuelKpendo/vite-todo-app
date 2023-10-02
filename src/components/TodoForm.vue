@@ -5,11 +5,9 @@ import {v4 as uuid } from 'uuid'
 import { useTodoStore } from '../store';
 
 const store = useTodoStore();
-const formData = ref({
-  title: '',
-});
+const formData = ref('');
     const onSubmit = () => {
-        const title = formData.value.title.trim();  
+        const title = formData.value.trim();  
            
         if (title) {
             
@@ -21,7 +19,7 @@ const formData = ref({
 
             store.addNewTodo(todoData);         
         }
-            formData.value.title = '';
+            formData.value = '';
 
     }
     </script>
@@ -33,9 +31,9 @@ const formData = ref({
     >
         <button type="submit" class="h-5 w-5 rounded-full border border-black"></button>
         <input
-        v-model="formData.title"
+        v-model="formData"
         type="text"
-        placeholder="Type your todo..."
+        placeholder="Create your todo..."
         class="w-10/12 outline-none placeholder:italic"
         />
     </form>
