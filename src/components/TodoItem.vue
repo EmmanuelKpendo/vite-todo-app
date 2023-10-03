@@ -2,10 +2,17 @@
 import { useTodoStore } from '../store';
 import {addIcons} from 'oh-vue-icons';
 import { MdCheckRound } from "oh-vue-icons/icons";
+import { ref, watch } from 'vue';
 
-defineProps(['title', 'id', 'status']);
+const props = defineProps(['title', 'id', 'status']);
 const store = useTodoStore();
 addIcons(MdCheckRound);
+
+const inputRef  = ref(props.title)
+
+watch(inputRef, () => {
+  store.updateTodo(inputRef.value, props.id)
+})
 
 </script>
 
@@ -18,7 +25,7 @@ addIcons(MdCheckRound);
       <button @click="store.toggleTodoStatus(id)" class="hover:border-primary h-5 w-5 rounded-full border flex items-center justify-center">
         <v-icon name='md-check-round' v-if="status === 'completed' " scale='0.7' />
       </button>
-      <p>{{title}}</p>
+      <input type="text" v-model="inputRef" class="outline-slate-300 px-2" :disabled="status === 'completed'" :class=" status === 'completed' ? 'pointer-events-none bg-transparent' : '' " />
     </div>
     <button
     @click="store.deleteTodo(id)"

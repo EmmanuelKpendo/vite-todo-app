@@ -46,6 +46,12 @@ export const useTodoStore = defineStore("todos", {
       localStorage.setItem("todos", JSON.stringify(this.todos));
     },
 
+    updateTodo(title: string, id: string) {
+      const todoToUpdate = this.todos.find((todo) => todo.id === id)!;
+      todoToUpdate.title = title;
+      localStorage.setItem("todos", JSON.stringify(this.todos));
+    },
+
     toggleTodoStatus(id: string) {
       const todo = this.todos.find((todo) => todo.id === id)!;
       todo.status = todo.status === Status.Active ? Status.Completed : Status.Active;
